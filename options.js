@@ -2,13 +2,14 @@ const MODE_SETTING = "pinMode";
 const LEGACY_SHARED_MODE_SETTING = "sharedModeEnabled";
 const MODE_SHARED = "shared";
 const MODE_DUPLICATE = "duplicate";
+const DEFAULT_MODE = MODE_SHARED;
 
 const modeInputs = [...document.querySelectorAll('input[name="pin-mode"]')];
 const description = document.getElementById("mode-description");
 const status = document.getElementById("status");
 
 function normalizeMode(mode) {
-  return mode === MODE_SHARED ? MODE_SHARED : MODE_DUPLICATE;
+  return mode === MODE_DUPLICATE ? MODE_DUPLICATE : DEFAULT_MODE;
 }
 
 function selectedMode() {
@@ -32,9 +33,12 @@ function updateDescription(mode) {
 async function loadSettings() {
   const settings = await chrome.storage.sync.get({
     [MODE_SETTING]: null,
-    [LEGACY_SHARED_MODE_SETTING]: false
+    [LEGACY_SHARED_MODE_SETTING]: null
   });
-  const mode = settings[MODE_SETTING] || (settings[LEGACY_SHARED_MODE_SETTING] ? MODE_SHARED : MODE_DUPLICATE);
+  const legacyMode = typeof settings[LEGACY_SHARED_MODE_SETTING] === "boolean"
+    ? (settings[LEGACY_SHARED_MODE_SETTING] ? MODE_SHARED : MODE_DUPLICATE)
+    : DEFAULT_MODE;
+  const mode = settings[MODE_SETTING] || legacyMode;
 
   setSelectedMode(mode);
   updateDescription(selectedMode());

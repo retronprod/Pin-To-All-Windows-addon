@@ -5,6 +5,7 @@ const MODE_SETTING = "pinMode";
 const LEGACY_SHARED_MODE_SETTING = "sharedModeEnabled";
 const MODE_SHARED = "shared";
 const MODE_DUPLICATE = "duplicate";
+const DEFAULT_MODE = MODE_SHARED;
 const TAB_EDIT_RETRY_DELAYS = [150, 300, 600, 1000, 1500];
 
 let activeActivation = null;
@@ -99,14 +100,18 @@ function canonicalPinnedUrl(tab) {
 async function getMode() {
   const settings = await chrome.storage.sync.get({
     [MODE_SETTING]: null,
-    [LEGACY_SHARED_MODE_SETTING]: false
+    [LEGACY_SHARED_MODE_SETTING]: null
   });
 
   if (settings[MODE_SETTING] === MODE_SHARED || settings[MODE_SETTING] === MODE_DUPLICATE) {
     return settings[MODE_SETTING];
   }
 
-  return settings[LEGACY_SHARED_MODE_SETTING] ? MODE_SHARED : MODE_DUPLICATE;
+  if (typeof settings[LEGACY_SHARED_MODE_SETTING] === "boolean") {
+    return settings[LEGACY_SHARED_MODE_SETTING] ? MODE_SHARED : MODE_DUPLICATE;
+  }
+
+  return DEFAULT_MODE;
 }
 
 async function getAllTabs() {
