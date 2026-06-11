@@ -8,7 +8,7 @@ It has two modes:
 **Mode 2 – Duplicate:** Creates a new tab "lazy" tab, instead of loading the entire page a second time, and only sets the correct tab URL after the user clicks.
 
 ## Installation [EN]
-1. Download `PinToAllW-1.2.zip` from [releases](https://github.com/retronprod/Pin-To-All-Windows-addon/releases)
+1. Download `PinToAllW-1.3.zip` from [releases](https://github.com/retronprod/Pin-To-All-Windows-addon/releases)
 2. Extract the ZIP to a folder of your choice
 3. Open Chrome/Chromium → `chrome://extensions`
 4. Enable **Developer mode** (toggle in the top right corner)
@@ -16,7 +16,7 @@ It has two modes:
 
 ## Instalacja [PL]
 
-1. Pobierz `PinToAllW-1.2.zip` z [releases](https://github.com/retronprod/Pin-To-All-Windows-addon/releases)
+1. Pobierz `PinToAllW-1.3.zip` z [releases](https://github.com/retronprod/Pin-To-All-Windows-addon/releases)
 2. Wypakuj ZIP do wybranego folderu
 3. Otwórz Chrome/Chromium → `chrome://extensions`
 4. Włącz **Tryb deweloperski** (prawy górny róg)
