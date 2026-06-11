@@ -99,7 +99,7 @@ function canonicalPinnedUrl(tab) {
 async function getMode() {
   const settings = await chrome.storage.sync.get({
     [MODE_SETTING]: null,
-    [LEGACY_SHARED_MODE_SETTING]: true
+    [LEGACY_SHARED_MODE_SETTING]: false
   });
 
   if (settings[MODE_SETTING] === MODE_SHARED || settings[MODE_SETTING] === MODE_DUPLICATE) {

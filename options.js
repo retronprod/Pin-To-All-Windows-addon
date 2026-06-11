@@ -8,7 +8,7 @@ const description = document.getElementById("mode-description");
 const status = document.getElementById("status");
 
 function normalizeMode(mode) {
-  return mode === MODE_DUPLICATE ? MODE_DUPLICATE : MODE_SHARED;
+  return mode === MODE_SHARED ? MODE_SHARED : MODE_DUPLICATE;
 }
 
 function selectedMode() {
@@ -32,7 +32,7 @@ function updateDescription(mode) {
 async function loadSettings() {
   const settings = await chrome.storage.sync.get({
     [MODE_SETTING]: null,
-    [LEGACY_SHARED_MODE_SETTING]: true
+    [LEGACY_SHARED_MODE_SETTING]: false
   });
   const mode = settings[MODE_SETTING] || (settings[LEGACY_SHARED_MODE_SETTING] ? MODE_SHARED : MODE_DUPLICATE);
 
