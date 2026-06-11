@@ -205,9 +205,48 @@ async function moveLiveTabToProxy(liveTab, proxyTab) {
     }));
   } catch (error) {
     console.warn("Pinned tab move failed, retrying as an unpinned move.", error);
-    await retryTabEdit(() => chrome.tabs.update(liveTab.id, { pinned: false }));
-    return retryTabEdit(() => chrome.tabs.move(liveTab.id, { windowId: proxyTab.windowId }));
+    let wasUnpinned = false;
+
+    try {
+      await retryTabEdit(() => chrome.tabs.update(liveTab.id, { pinned: false }));
+      wasUnpinned = true;
+      return await retryTabEdit(() => chrome.tabs.move(liveTab.id, {
+        windowId: proxyTab.windowId
+      }));
+    } finally {
+      if (wasUnpinned) {
+        try {
+          await retryTabEdit(() => chrome.tabs.update(liveTab.id, { pinned: true }));
+        } catch (restoreError) {
+          console.warn("Could not restore pinned state after moving a shared tab.", restoreError);
+        }
+      }
+    }
   }
+}
+
+async function activatePinnedTabAt(tabId, windowId, index) {
+  let tab = await chrome.tabs.get(tabId);
+
+  if (!tab.pinned) {
+    tab = await retryTabEdit(() => chrome.tabs.update(tabId, { pinned: true }));
+  }
+
+  if (typeof index === "number" && tab.index !== index) {
+    tab = await retryTabEdit(() => chrome.tabs.move(tabId, { windowId, index }));
+  }
+
+  tab = await retryTabEdit(() => chrome.tabs.update(tabId, { active: true }));
+
+  if (!tab.pinned) {
+    tab = await retryTabEdit(() => chrome.tabs.update(tabId, { pinned: true }));
+  }
+
+  if (typeof index === "number" && tab.index !== index) {
+    tab = await retryTabEdit(() => chrome.tabs.move(tabId, { windowId, index }));
+  }
+
+  return tab;
 }
 
 async function activateSharedTab(proxyTab) {
@@ -222,8 +261,8 @@ async function activateSharedTab(proxyTab) {
   }
 
   if (liveTab.windowId === proxyTab.windowId) {
-    await retryTabEdit(() => chrome.tabs.update(liveTab.id, { active: true, pinned: true }));
     await retryTabEdit(() => chrome.tabs.remove(proxyTab.id));
+    await activatePinnedTabAt(liveTab.id, liveTab.windowId);
     return true;
   }
 
@@ -231,8 +270,8 @@ async function activateSharedTab(proxyTab) {
   const previousIndex = liveTab.index;
 
   await moveLiveTabToProxy(liveTab, proxyTab);
-  await retryTabEdit(() => chrome.tabs.update(liveTab.id, { active: true, pinned: true }));
   await retryTabEdit(() => chrome.tabs.remove(proxyTab.id));
+  await activatePinnedTabAt(liveTab.id, proxyTab.windowId, proxyTab.index);
   await createSharedProxy(previousWindowId, targetUrl, previousIndex);
   return true;
 }
