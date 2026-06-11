@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Pin to All Windows",
+  "name": "__MSG_extensionName__",
   "version": "1.2.0",
-  "description": "Copies pinned tabs to new windows with selectable lazy or shared-state behavior.",
-  "permissions": ["storage", "tabs"],
+  "default_locale": "en",
+  "description": "__MSG_extensionDescription__",
+  "permissions": ["favicon", "storage", "tabs"],
   "action": {
     "default_popup": "options.html"
   },

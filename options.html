@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Pin to All Windows</title>
+    <title data-i18n="extensionName">Pin to All Windows</title>
     <style>
       html {
         color-scheme: light dark;
@@ -45,20 +45,21 @@
     </style>
   </head>
   <body>
-    <h1>Pin to All Windows</h1>
+    <h1 data-i18n="extensionName">Pin to All Windows</h1>
     <fieldset>
-      <legend>Mode</legend>
+      <legend data-i18n="modeLegend">Mode</legend>
       <label>
         <input name="pin-mode" type="radio" value="shared">
-        <span>Mode 1 – Shared State</span>
+        <span data-i18n="modeSharedLabel">Mode 1 – Shared State</span>
       </label>
       <label>
         <input name="pin-mode" type="radio" value="duplicate">
-        <span>Mode 2 – Duplicate</span>
+        <span data-i18n="modeDuplicateLabel">Mode 2 – Duplicate</span>
       </label>
     </fieldset>
     <p id="mode-description"></p>
     <p id="status" role="status"></p>
+    <script src="i18n.js"></script>
     <script src="options.js"></script>
   </body>
 </html>

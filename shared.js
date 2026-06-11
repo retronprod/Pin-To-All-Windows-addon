@@ -2,16 +2,6 @@ const ACTIVATE_SHARED_TAB = "activate-shared-tab";
 
 let activationRequested = false;
 
-function targetFromLocation() {
-  try {
-    const encodedTarget = window.location.hash.slice(1);
-    const targetUrl = decodeURIComponent(encodedTarget);
-    return /^(https?|file):/.test(targetUrl) ? targetUrl : null;
-  } catch {
-    return null;
-  }
-}
-
 function loadTargetAsFallback() {
   const targetUrl = targetFromLocation();
   if (targetUrl && !document.hidden) {

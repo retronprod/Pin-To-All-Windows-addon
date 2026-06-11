@@ -1,0 +1,44 @@
+{
+  "extensionName": {
+    "message": "Pin to All Windows"
+  },
+  "extensionDescription": {
+    "message": "Kopiuje przypięte karty do nowych okien z wyborem trybu duplikowania lub współdzielenia stanu."
+  },
+  "modeLegend": {
+    "message": "Tryb"
+  },
+  "modeSharedLabel": {
+    "message": "Tryb 1 – Współdzielenie stanu"
+  },
+  "modeDuplicateLabel": {
+    "message": "Tryb 2 – Duplikowanie"
+  },
+  "modeSharedDescription": {
+    "message": "Jedna żywa karta jest przenoszona między oknami, a pozostałe okna pokazują lekki placeholder."
+  },
+  "modeDuplicateDescription": {
+    "message": "Każde nowe okno dostaje własne przypięte kopie kart, ale strony ładują się dopiero po kliknięciu."
+  },
+  "settingsSaved": {
+    "message": "Zapisano"
+  },
+  "lazyTitle": {
+    "message": "Przypięta karta"
+  },
+  "lazyHeading": {
+    "message": "Przypięta karta czeka"
+  },
+  "lazyDescription": {
+    "message": "Ta strona załaduje się po wybraniu karty."
+  },
+  "sharedTitle": {
+    "message": "Współdzielona przypięta karta"
+  },
+  "sharedHeading": {
+    "message": "Współdzielona przypięta karta"
+  },
+  "sharedDescription": {
+    "message": "Żywa karta zostanie przeniesiona tutaj po wybraniu tego placeholdera."
+  }
+}

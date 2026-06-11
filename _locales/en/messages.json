@@ -1,0 +1,44 @@
+{
+  "extensionName": {
+    "message": "Pin to All Windows"
+  },
+  "extensionDescription": {
+    "message": "Copies pinned tabs to new windows with selectable duplicate or shared-state behavior."
+  },
+  "modeLegend": {
+    "message": "Mode"
+  },
+  "modeSharedLabel": {
+    "message": "Mode 1 – Shared State"
+  },
+  "modeDuplicateLabel": {
+    "message": "Mode 2 – Duplicate"
+  },
+  "modeSharedDescription": {
+    "message": "One live tab is moved between windows, while the other windows show lightweight placeholders."
+  },
+  "modeDuplicateDescription": {
+    "message": "Each new window gets its own pinned tab copies, but pages load only after you select them."
+  },
+  "settingsSaved": {
+    "message": "Saved"
+  },
+  "lazyTitle": {
+    "message": "Pinned tab"
+  },
+  "lazyHeading": {
+    "message": "Pinned tab is waiting"
+  },
+  "lazyDescription": {
+    "message": "This page will load when the tab is selected."
+  },
+  "sharedTitle": {
+    "message": "Shared pinned tab"
+  },
+  "sharedHeading": {
+    "message": "Shared pinned tab"
+  },
+  "sharedDescription": {
+    "message": "The live tab will move here when this proxy is selected."
+  }
+}

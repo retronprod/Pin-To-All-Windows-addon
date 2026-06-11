@@ -25,8 +25,8 @@ function setSelectedMode(mode) {
 
 function updateDescription(mode) {
   description.textContent = mode === MODE_SHARED
-    ? "Jedna żywa karta jest przenoszona między oknami, a pozostałe okna pokazują lekki placeholder."
-    : "Każde nowe okno dostaje własne przypięte kopie kart, ale strony ładują się dopiero po kliknięciu.";
+    ? chrome.i18n.getMessage("modeSharedDescription")
+    : chrome.i18n.getMessage("modeDuplicateDescription");
 }
 
 async function loadSettings() {
@@ -45,7 +45,7 @@ async function saveSettings() {
 
   await chrome.storage.sync.set({ [MODE_SETTING]: mode });
   updateDescription(mode);
-  status.textContent = "Zapisano";
+  status.textContent = chrome.i18n.getMessage("settingsSaved");
 
   window.setTimeout(() => {
     status.textContent = "";

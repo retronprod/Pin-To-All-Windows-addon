@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Shared pinned tab</title>
+    <title data-i18n="sharedTitle">Shared pinned tab</title>
+    <link id="target-favicon" rel="icon" href="">
     <style>
       html {
         color-scheme: light dark;
@@ -21,9 +22,11 @@
   </head>
   <body>
     <main>
-      <h1>Shared pinned tab</h1>
-      <p>The live tab will move here when this proxy is selected.</p>
+      <h1 data-i18n="sharedHeading">Shared pinned tab</h1>
+      <p data-i18n="sharedDescription">The live tab will move here when this proxy is selected.</p>
     </main>
+    <script src="i18n.js"></script>
+    <script src="placeholder.js"></script>
     <script src="shared.js"></script>
   </body>
 </html>
