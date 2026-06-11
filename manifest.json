@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Pin to All Windows",
+  "version": "1.2.0",
+  "description": "Copies pinned tabs to new windows with selectable lazy or shared-state behavior.",
+  "permissions": ["storage", "tabs"],
+  "action": {
+    "default_popup": "options.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
